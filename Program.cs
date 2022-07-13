@@ -5,7 +5,6 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 builder.Services.AddAuthorization(options => 
@@ -39,20 +38,18 @@ builder.Services.AddSwaggerGen(options => {
         }
     });    
 });
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(
         options => { 
-            options.OAuthAppName("miniapp-oauth");
+            options.OAuthAppName("miniapp");
             options.OAuthClientId("109e12e2-4ca7-48d0-af05-c834c884322c");
             options.OAuthScopes("109e12e2-4ca7-48d0-af05-c834c884322c/access_as_user");
             options.OAuthUsePkce();
-            //options.InjectStylesheet("./css/swagger-extras.css");
         }
     );
 }

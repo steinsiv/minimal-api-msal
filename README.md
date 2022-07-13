@@ -1,23 +1,29 @@
 # minimal-api-msal
 minimum setup of `.net` minimal api with `swagger` and `msal` using Azure App roles.
-OAuth2 flow is `AuthorizationCode` with `PKCE`
+OAuth2 flow used is `AuthorizationCode` with `PKCE`
 
-### Setup application in Azure
+### Azure application setup
 https://entra.microsoft.com
 
-| Menu  | SubMenu  | Action  |   
-|---|---|---|---|
-|`App Registrations`   |  `Expose an API` |  make sure `Application ID URI` is set |  
-|   |   | add a scope `access_as_user`  |   
-|   | `App Roles`  | Create some roles, including `app-role-A` |   
-|   | `Redirect URI`  | Create SPA redirect URI, e.g. `https://localhost:PORT/swagger/oauth2-redirect.html`  |   
-|   | `API Permissions`  | Add Microsoft.Graph -> `User.Read`  |   
-|   | `Token configuration` | Add `login_hint`  |   
-| `Enterprise Application`  | `Users and Groups`  | Connect security group(s) with your app role(s)  |   
+Create an `App` and configure it 
+##### App Registrations
+| Menu  | Action  |   
+|---|---|
+|  `Expose an API` |  make sure `Application ID URI` is set |  
+|   | add a scope `access_as_user`  |   
+| `App Roles`  | Create some roles, including `app-role-A` |   
+| `Redirect URI`  | Create SPA redirect URI, e.g. `https://localhost:PORT/swagger/oauth2-redirect.html`  |   
+| `API Permissions`  | Add Microsoft.Graph -> `User.Read`  |   
+| `Token configuration` | Add `login_hint`  |   
 
-Connect users to the same security groups you want to test.
 
-### Init project
+##### Enterprise Application
+| Menu  | Action  |   
+|---|---|
+| `Users and Groups`  | Connect security group(s) with your app role(s)  |   
+
+
+### Initialize project
 Create project with `dotnet` and primary parameters from your app registration
 For more info see https://aka.ms/dotnet-template-ms-identity-platform
 ```sh
